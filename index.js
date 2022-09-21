@@ -5,23 +5,62 @@ const MODE_LIST = {
   light: "light-icon",
   dark: "dark-icon",
 };
+const OPTION = {
+  "--Please choose an option--": "",
+  "OS Default": "os-default",
+  Light: "light",
+  Dark: "dark",
+};
 
 const html = document.documentElement;
 const theme = window.localStorage.getItem(THEME_STORAGE);
 const mode = theme || "os-default";
-const btn = document.getElementById(THEME_ID);
 
-btn.addEventListener("change", changeTheme);
-if (window && html) {
-  html.className = mode;
-  html.style.backgroundColor = "";
+function init() {
+  if (window && html) {
+    // 插入 meta 标签
+    let oMeta = document.createElement("meta");
+    oMeta.content = "light dark";
+    oMeta.name = "color-scheme";
+    document.getElementsByTagName("head")[0].appendChild(oMeta);
+
+    // 初始化类名
+    html.className = mode;
+    html.style.backgroundColor = "";
+  }
+  // 插入select
+  let mySelect = document.createElement("select");
+  mySelect.id = THEME_ID;
+
+  Object.keys(OPTION).forEach((item) => {
+    let text = item;
+    let value = OPTION[text];
+    mySelect.options.add(new Option(text, value)); //这个兼容IE与firefox
+  });
+  document.body.appendChild(mySelect);
+
+  // 引入css
+  loadStyle('index.css')
 }
+init();
+
+const btn = document.getElementById(THEME_ID);
+btn.addEventListener("change", changeTheme);
 if (theme) {
   changeSelect(theme);
 }
 
+function loadStyle(url) {
+  var link = document.createElement('link')
+  link.type = 'text/css'
+  link.rel = 'stylesheet'
+  link.href = url
+  var head = document.getElementsByTagName('head')[0]
+  head.appendChild(link)
+}
+
 function changeSelect(optionVal) {
-  for (i = 0; i < btn.length; i++) {
+  for (let i = 0; i < btn.length; i++) {
     if (btn[i].value == optionVal) {
       btn[i].selected = true;
     }
