@@ -1,0 +1,31 @@
+/* 自定义属性 */
+.none {
+  --font-light-color-1: #1b1b1b;
+  --font-dark-color-1: #1b1b1b;
+
+  --bg-light-color-1: #fff;
+  --bg-dark-color-1: #1b1b1b;
+}
+
+.light {
+  color-scheme: light;
+  /* 浏览器提供的元素 UI 中使用的颜色与配色方案的意图相匹配。例如滚动条、拼写检查下划线、表单控件等。 */
+  --nav-bg: var(--bg-light-color-1);
+}
+
+.dark {
+  color-scheme: dark;
+  --nav-bg: var(--bg-dark-color-1);
+}
+
+:root:not(.light):not(.dark) {
+  @media (prefers-color-scheme: light) {
+    color-scheme: light;
+    --nav-bg: var(--bg-light-color-1);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    color-scheme: dark;
+    --nav-bg: var(--bg-dark-color-1);
+  }
+}

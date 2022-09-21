@@ -1,0 +1,24 @@
+{
+  "name": "dark-mode-dropdown",
+  "version": "1.0.0",
+  "description": "暗夜/高亮模式切换按钮，同时支持跟随系统变换模式",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sunny19990108"
+  },
+  "keywords": [
+    "javascript",
+    "light",
+    "dark",
+    "mode",
+    "theme"
+  ],
+  "author": "lichenxia",
+  "license": "ISC",
+  "dependencies": {}
+}
